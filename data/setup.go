@@ -37,5 +37,5 @@ func ConnectDb() {
 		fmt.Println("We are connected to the database ", DbDriver)
 	}
 
-	DB.AutoMigrate(&models.Customer{})
+	DB.AutoMigrate(&models.Customer{}, &models.Address{})
 }

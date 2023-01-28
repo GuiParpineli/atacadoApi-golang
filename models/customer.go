@@ -6,10 +6,10 @@ import (
 
 type Customer struct {
 	gorm.Model
-	Name     string `gorm:"size:255;not null; unique" json:"name"`
-	Lastname string `gorm:"size:255;not null; unique" json:"lastname"`
-	Email    string `gorm:"size:255;not null; unique" json:"email"`
-	Phone    string `gorm:"size:255;not null; unique" json:"phone"`
-	Cpf      string `gorm:"size:255;not null; unique" json:"cpf"`
-	Address
+	Name     string  `gorm:"size:255;not null; unique" json:"name"`
+	Lastname string  `gorm:"size:255;not null; unique" json:"lastname"`
+	Email    string  `gorm:"size:255;not null; unique" json:"email"`
+	Phone    string  `gorm:"size:255;not null; unique" json:"phone"`
+	Cpf      string  `gorm:"size:255;not null; unique" json:"cpf"`
+	Address  Address `gorm:"foreignKey:Customers;references:ID"`
 }

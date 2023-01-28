@@ -18,6 +18,9 @@ func main() {
 	public.PATCH("/customer/:id", controller.UpdateCustomer)
 	public.DELETE("/customer/:id", controller.DeleteCustomer)
 
+	public.GET("/address", controller.GetAddresses)
+	public.POST("/address", controller.SaveAddress)
+
 	err := r.Run()
 	if err != nil {
 		return
