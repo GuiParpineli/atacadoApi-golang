@@ -1,6 +1,8 @@
-package model
+package models
 
-import "github.com/jinzhu/gorm"
+import (
+	"github.com/jinzhu/gorm"
+)
 
 type Customer struct {
 	gorm.Model

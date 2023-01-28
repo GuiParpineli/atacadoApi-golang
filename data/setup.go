@@ -1,7 +1,7 @@
-package Data
+package data
 
 import (
-	"atacado_api_go/model"
+	"atacado_api_go/models"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
@@ -36,5 +36,5 @@ func ConnectDb() {
 		fmt.Println("We are connected to the database ", DbDriver)
 	}
 
-	DB.AutoMigrate(&model.Customer{})
+	DB.AutoMigrate(&models.Customer{})
 }
