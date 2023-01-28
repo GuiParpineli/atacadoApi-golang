@@ -31,8 +31,7 @@ func GetCustomers(c *gin.Context) {
 func GetCustomerById(c *gin.Context) {
 	var customer models.Customer
 
-	if err := data.DB.Where("id = ?", c.Param("id")).First(&customer).Preload("AddressId").Error;
-		err != nil {
+	if err := data.DB.Where("id = ?", c.Param("id")).First(&customer).Preload("AddressId").Error; err != nil {
 		c.JSON(http.StatusNoContent, gin.H{"error": "None customers founded."})
 		return
 	}

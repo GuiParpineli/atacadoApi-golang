@@ -11,5 +11,5 @@ type Customer struct {
 	Email    string  `gorm:"size:255;not null; unique" json:"email"`
 	Phone    string  `gorm:"size:255;not null; unique" json:"phone"`
 	Cpf      string  `gorm:"size:255;not null; unique" json:"cpf"`
-	Address  Address `gorm:"foreignKey:Customers;references:ID"`
+	Address  Address `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
