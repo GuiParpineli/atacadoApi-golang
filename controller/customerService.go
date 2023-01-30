@@ -12,14 +12,14 @@ type CreateCustomer struct {
 	Lastname string `json:"lastname" binding:"required"`
 	Email    string `json:"email" binding:"required"`
 	Phone    string `json:"phone" binding:"required"`
-	Cpf      string `json:"cpf" binding:"required"`
+	Cnpj     string `json:"cnpj" binding:"required"`
 }
 type UpdateCustomerInput struct {
 	Name     string `json:"name"`
 	Lastname string `json:"lastname"`
 	Email    string `json:"email"`
 	Phone    string `json:"phone"`
-	Cpf      string `json:"cpf"`
+	Cnpj     string `json:"cnpj"`
 }
 
 func GetCustomers(c *gin.Context) {
@@ -45,7 +45,7 @@ func SaveCustomer(c *gin.Context) {
 		return
 	}
 	customer := models.Customer{Name: input.Name, Lastname: input.Lastname, Email: input.Email,
-		Phone: input.Phone, Cpf: input.Cpf}
+		Phone: input.Phone, Cnpj: input.Cnpj}
 	data.DB.Create(&customer)
 	c.JSON(http.StatusOK, gin.H{"data": customer})
 }

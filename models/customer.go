@@ -10,6 +10,6 @@ type Customer struct {
 	Lastname string  `gorm:"size:255;not null;" json:"lastname"`
 	Email    string  `gorm:"size:255;not null; unique" json:"email"`
 	Phone    string  `gorm:"size:255;not null; unique" json:"phone"`
-	Cpnj     string  `gorm:"size:255;not null; unique" json:"cpnj"`
+	Cnpj     string  `gorm:"size:255;not null; unique" json:"cnpj"`
 	Address  Address `gorm:"constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 }
