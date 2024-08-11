@@ -7,6 +7,6 @@ type Address struct {
 	Street     string `gorm:"size:255;not null;" json:"street"`
 	City       string `gorm:"size:255;not null;" json:"city"`
 	State      string `gorm:"size:255;not null;" json:"state"`
-	Zipcode    string `gorm:"size:255;not null;" json:"zipcode"`
-	CustomerID uint
+	PostalCode string `gorm:"size:255;not null;" json:"postal_code"`
+	CustomerID uint   `json:"customer_id"`
 }

@@ -8,10 +8,10 @@ import (
 )
 
 type CreateAddress struct {
-	Street  string `json:"street" binding:"required"`
-	City    string `json:"city" binding:"required"`
-	State   string `json:"state" binding:"required"`
-	Zipcode string `json:"zipcode" binding:"required"`
+	Street     string `json:"street" binding:"required"`
+	City       string `json:"city" binding:"required"`
+	State      string `json:"state" binding:"required"`
+	PostalCode string `json:"postal_code" binding:"required"`
 }
 
 func GetAddresses(c *gin.Context) {
@@ -26,7 +26,7 @@ func SaveAddress(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	address := models.Address{State: input.Street, City: input.City, Street: input.Street, Zipcode: input.Zipcode}
+	address := models.Address{State: input.Street, City: input.City, Street: input.Street, PostalCode: input.PostalCode}
 	data.DB.Create(&address)
 	c.JSON(http.StatusOK, gin.H{"data": address})
 }

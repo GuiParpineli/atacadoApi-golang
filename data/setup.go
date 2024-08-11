@@ -31,8 +31,8 @@ func ConnectDb() {
 	DB, err = gorm.Open(DbDriver, DBURL)
 
 	if err != nil {
-		fmt.Sprintf("Cannot connect to database", DbDriver)
-		log.Fatal("conecction:", err)
+		fmt.Println("Cannot connect to database", DbDriver)
+		log.Fatal("connection:", err)
 	} else {
 		fmt.Println("We are connected to the database ", DbDriver)
 	}
