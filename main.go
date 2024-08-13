@@ -1,8 +1,8 @@
 package main
 
 import (
-	"atacado_api_go/controller"
 	"atacado_api_go/data"
+	"atacado_api_go/service"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,17 +12,18 @@ func main() {
 	data.ConnectDb()
 
 	public := r.Group("/")
-	public.GET("/customer", controller.GetCustomers)
-	public.GET("/customer/:id", controller.GetCustomerById)
-	public.POST("/customer", controller.SaveCustomerWithAddress)
-	public.PATCH("/customer/:id", controller.UpdateCustomer)
-	public.DELETE("/customer/:id", controller.DeleteCustomer)
+	public.GET("/customer", service.GetCustomers)
+	public.GET("/customer/:id", service.GetCustomerById)
+	public.POST("/customer", service.SaveCustomerWithAddress)
+	public.PATCH("/customer/:id", service.UpdateCustomer)
+	public.DELETE("/customer/:id", service.DeleteCustomer)
 
-	public.GET("/address", controller.GetAddresses)
-	public.POST("/address", controller.SaveAddress)
+	public.GET("/address", service.GetAddresses)
+	public.POST("/address", service.SaveAddress)
 
-	public.GET("/orders", controller.GetAllOrders)
-	public.POST("/order", controller.SaveOrder)
+	public.GET("/orders", service.GetAllOrders)
+	public.GET("/orders/:id", service.GetOrderById)
+	public.POST("/order", service.SaveOrder)
 
 	err := r.Run("localhost:8081")
 	if err != nil {

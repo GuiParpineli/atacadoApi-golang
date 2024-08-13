@@ -1,4 +1,4 @@
-package controller
+package service
 
 import (
 	"atacado_api_go/data"
@@ -12,10 +12,14 @@ type createProductOrder struct {
 	Quantity int `json:"quantity"`
 }
 
-type CreateOrder struct {
+type createOrder struct {
 	Products   []createProductOrder `json:"products" binding:"required"`
 	CustomerID uint                 `json:"customer_id" binding:"required"`
 	VendorID   uint                 `json:"vendor_id" binding:"required"`
+}
+
+type updateOrderInput struct {
+	Products []createProductOrder `json:"products"`
 }
 
 func GetAllOrders(c *gin.Context) {
@@ -25,7 +29,7 @@ func GetAllOrders(c *gin.Context) {
 }
 
 func SaveOrder(c *gin.Context) {
-	var input CreateOrder
+	var input createOrder
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -54,5 +58,29 @@ func SaveOrder(c *gin.Context) {
 		VendorID:   input.VendorID,
 	}
 	data.DB.Create(&order)
+	c.JSON(http.StatusOK, gin.H{"data": order})
+}
+
+func GetOrderById(c *gin.Context) {
+	var order models.Order
+	if err := data.DB.Where("id = ?", c.Param("id")).First(&order).Error; err != nil {
+		c.JSON(http.StatusNoContent, gin.H{"error": "None order founded."})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": order})
+}
+
+func UpdateOrder(c *gin.Context) {
+	var order models.Order
+	if err := data.DB.Where("id = ?", c.Param("id")).First(&order).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Order not found"})
+		return
+	}
+	var input updateOrderInput
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	data.DB.Model(&order).Updates(input)
 	c.JSON(http.StatusOK, gin.H{"data": order})
 }

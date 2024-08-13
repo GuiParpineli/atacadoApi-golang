@@ -1,4 +1,4 @@
-package controller
+package service
 
 import (
 	"atacado_api_go/data"

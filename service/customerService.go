@@ -1,4 +1,4 @@
-package controller
+package service
 
 import (
 	"atacado_api_go/data"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type CreateCustomerWithAddress struct {
+type createCustomerWithAddress struct {
 	Name       string `json:"name" binding:"required"`
 	Lastname   string `json:"lastname" binding:"required"`
 	Email      string `json:"email" binding:"required"`
@@ -19,7 +19,7 @@ type CreateCustomerWithAddress struct {
 	PostalCode string `json:"postal_code" binding:"required"`
 }
 
-type UpdateCustomerInput struct {
+type updateCustomerInput struct {
 	Name     string `json:"name"`
 	Lastname string `json:"lastname"`
 	Email    string `json:"email"`
@@ -44,7 +44,7 @@ func GetCustomerById(c *gin.Context) {
 }
 
 func SaveCustomerWithAddress(c *gin.Context) {
-	var input CreateCustomerWithAddress
+	var input createCustomerWithAddress
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -84,7 +84,7 @@ func UpdateCustomer(c *gin.Context) {
 		return
 	}
 
-	var input UpdateCustomerInput
+	var input updateCustomerInput
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
