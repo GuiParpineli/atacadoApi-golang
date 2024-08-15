@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type CreateAddress struct {
+type createAddress struct {
 	Street     string `json:"street" binding:"required"`
 	City       string `json:"city" binding:"required"`
 	State      string `json:"state" binding:"required"`
@@ -21,7 +21,7 @@ func GetAddresses(c *gin.Context) {
 }
 
 func SaveAddress(c *gin.Context) {
-	var input CreateAddress
+	var input createAddress
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

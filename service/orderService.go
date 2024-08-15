@@ -46,7 +46,7 @@ func SaveOrder(c *gin.Context) {
 		productsOrder = append(productsOrder, models.ProductOrder{Product: product, Quantity: productInput.Quantity})
 	}
 
-	var total uint
+	var total float32
 	for _, product := range productsOrder {
 		total += product.Product.SalePrice
 	}
@@ -83,4 +83,13 @@ func UpdateOrder(c *gin.Context) {
 	}
 	data.DB.Model(&order).Updates(input)
 	c.JSON(http.StatusOK, gin.H{"data": order})
+}
+
+func DeleteOrder(c *gin.Context) {
+	var order models.Order
+	if err := data.DB.Where("id = ?", c.Param("id")).First(&order).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Order not found"})
+		return
+	}
+	data.DB.Delete(&order)
 }
