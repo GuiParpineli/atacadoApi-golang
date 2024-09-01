@@ -8,15 +8,15 @@ import (
 )
 
 type createCustomerWithAddress struct {
-	Name       string `json:"name" binding:"required"`
-	Lastname   string `json:"lastname" binding:"required"`
-	Email      string `json:"email" binding:"required"`
-	Phone      string `json:"phone" binding:"required"`
-	Cnpj       string `json:"cnpj" binding:"required"`
-	Street     string `json:"street" binding:"required"`
-	City       string `json:"city" binding:"required"`
-	State      string `json:"state" binding:"required"`
-	PostalCode string `json:"postal_code" binding:"required"`
+	Name     string `json:"name" binding:"required"`
+	Lastname string `json:"lastname" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Phone    string `json:"phone" binding:"required"`
+	Cnpj     string `json:"cnpj" binding:"required"`
+	Street   string `json:"street" binding:"required"`
+	City     string `json:"city" binding:"required"`
+	State    string `json:"state" binding:"required"`
+	ZipCode  string `json:"postal_code" binding:"required"`
 }
 
 type updateCustomerInput struct {
@@ -64,7 +64,7 @@ func SaveCustomerWithAddress(c *gin.Context) {
 		Street:     input.Street,
 		City:       input.City,
 		State:      input.State,
-		PostalCode: input.PostalCode,
+		ZipCode:    input.ZipCode,
 		CustomerID: customer.ID,
 	}
 
