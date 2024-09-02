@@ -48,7 +48,7 @@ func SaveOrder(c *gin.Context) {
 
 	var total float32
 	for _, product := range productsOrder {
-		total += product.Product.SalePrice
+		total += product.Product.Price
 	}
 
 	order := models.Order{

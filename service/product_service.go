@@ -8,13 +8,13 @@ import (
 )
 
 type createProduct struct {
-	Name          string  `json:"name" binding:"required"`
-	ProviderName  string  `json:"providerName"`
-	Ncm           string  `json:"ncm" `
-	Category      string  `json:"category"`
-	Inventory     int     `json:"inventory"`
-	PurchasePrice float32 `json:"purchasePrice"`
-	SalePrice     float32 `json:"salePrice"`
+	Name         string  `json:"name" binding:"required"`
+	ProviderName string  `json:"providerName"`
+	Ncm          int     `json:"ncm" `
+	Category     string  `json:"category"`
+	Inventory    int     `json:"inventory"`
+	Cost         float32 `json:"purchasePrice"`
+	Price        float32 `json:"salePrice"`
 }
 
 func GetProducts(c *gin.Context) {
@@ -30,13 +30,13 @@ func CreateProduct(c *gin.Context) {
 		return
 	}
 	product := models.Product{
-		Name:          input.Name,
-		ProviderName:  input.ProviderName,
-		Ncm:           input.Ncm,
-		Category:      input.Category,
-		Inventory:     input.Inventory,
-		PurchasePrice: input.PurchasePrice,
-		SalePrice:     input.SalePrice,
+		Name:         input.Name,
+		ProviderName: input.ProviderName,
+		Ncm:          input.Ncm,
+		Category:     input.Category,
+		Inventory:    input.Inventory,
+		Cost:         input.Cost,
+		Price:        input.Price,
 	}
 	data.DB.Create(&product)
 	c.JSON(http.StatusOK, gin.H{"data": product})

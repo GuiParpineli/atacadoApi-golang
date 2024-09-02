@@ -2,7 +2,6 @@ package main
 
 import (
 	"atacado_api_go/data"
-	"atacado_api_go/models"
 	"atacado_api_go/service"
 	"github.com/gin-gonic/gin"
 )
@@ -11,8 +10,6 @@ func main() {
 
 	r := gin.Default()
 	data.ConnectDb()
-	data.DB.LogMode(true)
-	data.DB.AutoMigrate(&models.Product{}, &models.Address{}, &models.Customer{}, &models.Order{}, &models.ProductOrder{})
 
 	public := r.Group("/")
 	public.GET("/customer", service.GetCustomers)

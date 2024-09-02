@@ -12,7 +12,7 @@ type createCustomerWithAddress struct {
 	Lastname string `json:"lastname" binding:"required"`
 	Email    string `json:"email" binding:"required"`
 	Phone    string `json:"phone" binding:"required"`
-	Cnpj     string `json:"cnpj" binding:"required"`
+	Cpf      string `json:"cnpj" binding:"required"`
 	Street   string `json:"street" binding:"required"`
 	City     string `json:"city" binding:"required"`
 	State    string `json:"state" binding:"required"`
@@ -24,7 +24,7 @@ type updateCustomerInput struct {
 	Lastname string `json:"lastname"`
 	Email    string `json:"email"`
 	Phone    string `json:"phone"`
-	Cnpj     string `json:"cnpj"`
+	Cpf      string `json:"cpf"`
 }
 
 func GetCustomers(c *gin.Context) {
@@ -55,7 +55,7 @@ func SaveCustomerWithAddress(c *gin.Context) {
 		Lastname: input.Lastname,
 		Email:    input.Email,
 		Phone:    input.Phone,
-		Cnpj:     input.Cnpj,
+		Cpf:      input.Cpf,
 	}
 
 	data.DB.Create(&customer)
